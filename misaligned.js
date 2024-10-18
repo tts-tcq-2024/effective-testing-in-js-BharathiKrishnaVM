@@ -3,14 +3,18 @@ const {expect} = require('chai')
 function print_color_map() {
     const majorColors = ["White", "Red", "Black", "Yellow", "Violet"];
     const minorColors = ["Blue", "Orange", "Green", "Brown", "Slate"];
+    let output='';
     for (let i = 0; i < majorColors.length; i++) {
         for (let j = 0; j < minorColors.length; j++) {
-            console.log(`${i * 5 + j} | ${majorColors[i]} | ${minorColors[j]}`);
+            output+=`${i * 5 + j} | ${majorColors[i]} | ${minorColors[j]}`;
         }
     }
-    return majorColors.length * minorColors.length;
+    console.log(output.trim());
+    return output;
 }
 
 result = print_color_map();
-expect(result).equals(25);
+expect(result).to.contain('1 | White | Blue'); // Pair number start from 1
+expect(result).to.contain('25 | Violet | Slate'); // Pair number end at 25
+expect(result).not.to.contain('0 | White | Blue'); // Pair number should not start from 0
 console.log('All is well (maybe!)');
